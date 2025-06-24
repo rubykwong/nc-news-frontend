@@ -43,12 +43,14 @@
 
 .article-card {
   display: block;
-  width: 300px;
+  /* width: 300px; */
   padding: 1rem;
-  margin: 1 rem 0;
+  margin: 1rem 0;
   border: 1px solid;
   overflow: hidden;
   color: inherit;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .article-card img {
