@@ -2,17 +2,13 @@ import ArticleList from "./ArticleList"
 
 function Main () {
     return (
+        <section> 
+        <h2>All articles</h2>
         <section>
             <ArticleList />
-        </section>
+        </section></section>
     )
 }
 
 export default Main
-
-// To do:
-// - Create article card
-// - Create article list 
-// - create navigation section
-// - create queries section 
-// - import all components to main  
+ 

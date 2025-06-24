@@ -1,6 +1,6 @@
-
+import Article from "./Article"
 function ArticleMain () {
-return <p>Article to go here</p>
+return <Article />
 }
 
 export default ArticleMain

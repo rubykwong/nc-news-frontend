@@ -16,7 +16,7 @@ function ArticleCard({article}) {
                     hour12: false,
                 })}
             </p>
-            <p>{article.author}</p>
+            <h4>{article.author}</h4>
             <p>Votes: {`${article.votes}`}</p>
             <p>Comments: {`${article.comment_count}`}</p>
             </div>
