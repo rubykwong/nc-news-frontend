@@ -23,6 +23,21 @@ useEffect(() => {
         })
 }, [])
 
+if (isLoading) {
+    return (
+        <section>
+            <p>Loading...</p>
+        </section>
+    )
+}
+
+if (isError) {
+    return (
+        <section>
+            <p>{`Whoops! Something went wrong :(`}</p>
+        </section>
+    )
+}
 if (articles.length === 0) {
     return (
         <section>

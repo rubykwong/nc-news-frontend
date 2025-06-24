@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 function ArticleCard({article}) {
     return (
-        <Link to={`/3`} className="article-card">
+        <Link to={`/${article.id}`} className="article-card">
             <h3>{article.title}</h3>
             <p>{article.created_at}</p>
             <p>{article.topic}</p>
@@ -15,5 +15,3 @@ function ArticleCard({article}) {
 }
 
 export default ArticleCard
-// TODO
-// set up link to use data from API using ${article.id}
