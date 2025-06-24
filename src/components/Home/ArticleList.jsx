@@ -15,6 +15,7 @@ useEffect(() => {
         .then((fetchedArticles) => {
             console.log(fetchedArticles)
             setArticles(fetchedArticles.articles)
+            console.log(articles)
         }).catch((err) => {
             console.log(err)
             setIsError(true)
