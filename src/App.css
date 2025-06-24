@@ -41,6 +41,38 @@
   color: #888;
 }
 
+.article-card {
+  display: block;
+  width: 300px;
+  padding: 1rem;
+  margin: 1 rem 0;
+  border: 1px solid;
+  overflow: hidden;
+  color: inherit;
+}
+
+.article-card img {
+  display: block;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+
+}
+
+.article-card p {
+  font-size: 0.8rem;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
 .article-list {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  max-width: 1200px;
+  gap: 1rem;
+  padding: 1rem;
 }
