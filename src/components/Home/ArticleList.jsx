@@ -49,9 +49,9 @@ if (articles.length === 0) {
 
 if (articles.length > 0) {
     return (
-    <section>
+    <section className="article-list">
        {articles.map((article) => {
-            return <ArticleCard key={article.id} article={article}/>
+            return <ArticleCard key={article.article_id} article={article}/>
         })}
     </section>
 )
