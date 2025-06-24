@@ -78,3 +78,10 @@
   gap: 1rem;
   padding: 1rem;
 }
+
+.comment {
+  display: block;
+  border: 1px solid;
+  padding: 1rem;
+  margin: 1rem 0;
+}

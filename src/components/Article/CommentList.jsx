@@ -36,11 +36,11 @@ function CommentList () {
         {isLoading && <p>Loading...</p>}
         {isError && <p>Whoops! Something went wrong</p>}
         {showingComments && (
+            <section><h2>Comments</h2>
             <ul className="comment-list">
             {comments.map((comment) => (
-                <li key={comment.comment_id}>
-                    <p>{comment.author},  
-                        {new Date(comment.created_at).toLocaleString('en-GB', {
+                <li key={comment.comment_id} className="comment">
+                    <p>{comment.author}, {new Date(comment.created_at).toLocaleString('en-GB', {
                             day: "2-digit",
                             month: "2-digit",
                             year: "2-digit",
@@ -53,7 +53,7 @@ function CommentList () {
                     <p>Votes: {comment.votes}</p>
                 </li>
             ))}
-            </ul>
+            </ul></section>
         )}
     </section>)
 }
