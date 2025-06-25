@@ -24,6 +24,20 @@ export function getArticleById(id){
     })
 }
 
+export function patchArticleVotes(articleId, inc_votes) {
+    return fetch(`https://nc-news-hx3v.onrender.com/api/articles/${articleId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ inc_votes }),
+    })
+    .then((res) => {
+    if (!res.ok) {
+      return Promise.reject('Failed to update votes');
+    }
+    return res.json();
+  })
+}
+
 export function getComments(articleId) {
     return fetch(`https://nc-news-hx3v.onrender.com/api/articles/${articleId}/comments`)
     .then((res) => {

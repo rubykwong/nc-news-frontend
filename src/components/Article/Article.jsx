@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getArticleById } from "../../api";
+import ArticleFooter from "./ArticleFooter";
 
 function Article () {
     const [article, setArticle] = useState(null)
@@ -61,7 +62,7 @@ function Article () {
             <p>{article.body}</p>
         </section>
         <section className="single-article-footer">
-                <p>Votes: {`${article.votes}`}</p>
+                <ArticleFooter articleId={article.article_id} initialVotes={article.votes} />
                 <p>Comments: {`${article.comment_count}`}</p>
         </section>
         </section>
