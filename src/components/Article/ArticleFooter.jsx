@@ -4,12 +4,18 @@ import { patchArticleVotes } from "../../api"
 function ArticleFooter ({articleId, initialVotes}) {
     const [votes, setVotes] = useState(initialVotes)
     const [isError, setIsError] = useState(false)
+    const [hasVoted, setHasVoted] = useState(false)
 
     function handleVoteChange(change) {
+        if (hasVoted) return;
+
         setVotes((currVotes) => currVotes + change);
+        setHasVoted(true);
+
         patchArticleVotes(articleId, change)
         .catch(()=> {
             setVotes((currVotes) => currVotes - change);
+            setHasVoted(false);
             setIsError(true);
     })
     }
