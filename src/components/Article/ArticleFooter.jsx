@@ -16,9 +16,9 @@ function ArticleFooter ({articleId, initialVotes}) {
 
     return (
     <div className="vote-container">
-        <button onClick={() => handleVoteChange(1)}>👍</button>
         <p>Votes: {votes}</p>
         {isError && <p>Something went wrong. Please try again!</p>}
+        <button onClick={() => handleVoteChange(1)}>👍</button>
         <button onClick={() => handleVoteChange(-1)}>👎</button>
     </div>
     )
