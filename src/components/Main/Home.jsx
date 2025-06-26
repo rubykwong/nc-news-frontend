@@ -1,6 +1,6 @@
 import ArticleList from "./ArticleList"
 
-function Main () {
+function Home () {
     return (
         <section> 
         <h2>All articles</h2>
@@ -10,5 +10,5 @@ function Main () {
     )
 }
 
-export default Main
+export default Home
  
