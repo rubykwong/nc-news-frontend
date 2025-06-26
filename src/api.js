@@ -64,3 +64,14 @@ export function postComment(articleId, {username, body}) {
         return res.json()
     })
 }
+
+export function deleteComment(commentId){
+        return fetch(`https://nc-news-hx3v.onrender.com/api/comments/${commentId}`, {
+        method: "DELETE",
+    })
+    .then((res) => {
+        if (!res.ok) {
+           return Promise.reject('Failed to delete comment. Please try again later'); 
+        }
+    })
+}

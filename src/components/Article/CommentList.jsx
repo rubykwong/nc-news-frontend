@@ -1,6 +1,6 @@
 import { useState, useContext } from "react"
 import {useParams} from "react-router-dom"
-import { getComments } from "../../api"
+import { getComments, deleteComment } from "../../api"
 import { UserContext } from "../../contexts/UserContext"
 import CommentAdder from "./CommentAdder"
 
@@ -9,6 +9,7 @@ function CommentList () {
     const [showingComments, setShowingComments] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [isError, setIsError] = useState(false)
+    const [deleteError, setDeleteError] = useState(null);
     const {articleId} = useParams()
     const {user} = useContext(UserContext)
 
@@ -43,6 +44,8 @@ function CommentList () {
         {showingComments && (
             <section>
                 <h2>Comments</h2>
+                {deleteError &&
+                <p>{deleteError}</p>}
                 {user && (
                     <CommentAdder articleId={articleId}
                     onCommentAdded={handleAddComment} />
@@ -62,12 +65,31 @@ function CommentList () {
                     </p>
                     <p>{comment.body}</p>
                     <p>Votes: {comment.votes}</p>
+                    {user?.username === comment.author && (
+                        <button onClick={() => handleDeleteComment(comment.comment_id)}>Delete</button>
+                    )}
                 </li>
             ))}
             </ul>
             </section>
         )}
     </section>)
+
+    function handleDeleteComment(commentId){
+        setDeleteError(null)
+
+        const commentToDelete = comments.find(
+            (comment) => comment.comment_id === commentId
+        );
+
+        setComments((curr) => 
+            curr.filter((comment) => comment.comment_id !== commentId)
+    );
+        deleteComment(commentId).catch(()=> {
+            setComments((curr) => [commentToDelete, ...curr]);
+            setDeleteError("Failed to delete comment. Please try again later.")
+        })
+    }
 }
 
 export default CommentList
