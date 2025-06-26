@@ -1,5 +1,11 @@
+import ArticleList from "./ArticleList"
+
 function Cooking () {
-    return <h2> Cooking </h2>
+    const topic = "cooking"
+    return <section>
+        <h2> Cooking </h2>
+        <ArticleList topic ={topic}/>
+    </section>
 }
 
 export default Cooking

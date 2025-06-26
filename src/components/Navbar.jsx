@@ -10,5 +10,3 @@ return <nav className="nav">
 }
 
 export default Navbar
-
-//add links to specific routes in navbar list
