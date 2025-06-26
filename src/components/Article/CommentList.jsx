@@ -1,6 +1,8 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import {useParams} from "react-router-dom"
 import { getComments } from "../../api"
+import { UserContext } from "../../contexts/UserContext"
+import CommentAdder from "./CommentAdder"
 
 function CommentList () {
     const [comments, setComments] = useState([])
@@ -8,6 +10,7 @@ function CommentList () {
     const [isLoading, setIsLoading] = useState(false)
     const [isError, setIsError] = useState(false)
     const {articleId} = useParams()
+    const {user} = useContext(UserContext)
 
     function handleClick(event){
         event.preventDefault();
@@ -22,7 +25,6 @@ function CommentList () {
             setShowingComments(true);
         })
         .catch((err) => {
-            console.log(err);
             setIsError(true);
         })
         .finally(() => {
@@ -30,13 +32,22 @@ function CommentList () {
         })
     }
 
+    function handleAddComment(addedComment) {
+        setComments((currComments) => [addedComment, ...currComments]);
+    }
     return (
         <section className="comments-section">
         <button key="show-comments-button" onClick={handleClick}>Show Comments</button>
         {isLoading && <p>Loading...</p>}
         {isError && <p>Whoops! Something went wrong</p>}
         {showingComments && (
-            <section><h2>Comments</h2>
+            <section>
+                <h2>Comments</h2>
+                {user && (
+                    <CommentAdder articleId={articleId}
+                    onCommentAdded={handleAddComment} />
+                )}
+
             <ul className="comment-list">
             {comments.map((comment) => (
                 <li key={comment.comment_id} className="comment">
@@ -53,7 +64,8 @@ function CommentList () {
                     <p>Votes: {comment.votes}</p>
                 </li>
             ))}
-            </ul></section>
+            </ul>
+            </section>
         )}
     </section>)
 }

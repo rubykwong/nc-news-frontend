@@ -32,7 +32,7 @@ export function patchArticleVotes(articleId, inc_votes) {
     })
     .then((res) => {
     if (!res.ok) {
-      return Promise.reject('Failed to update votes');
+      return Promise.reject('Failed to update votes. Please try again later');
     }
     return res.json();
   })
@@ -44,9 +44,23 @@ export function getComments(articleId) {
         if (!res.ok) {
             return Promise.reject({
                 status: res.status,
-                msg: "Failed to fetch article",
+                msg: "Failed to fetch article. Please try again later",
             })
         }
         return res.json()  
+    })
+}
+
+export function postComment(articleId, {username, body}) {
+    return fetch(`https://nc-news-hx3v.onrender.com/api/articles/${articleId}/comments`, {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, body }),
+    })
+    .then((res) => {
+        if (!res.ok) {
+           return Promise.reject('Failed to post comment. Please try again later'); 
+        }
+        return res.json()
     })
 }
