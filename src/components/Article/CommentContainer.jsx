@@ -49,7 +49,7 @@ function CommentContainer({articleId}){
     return (
         <section className="comment-container">
             <h2>Comments</h2>
-           {!isLoading && <p>Comments: {comments.length}</p>}
+           {!isLoading && <p>{comments.length} comments</p>}
             {user && (
                 <CommentAdder 
                     articleId={articleId}
