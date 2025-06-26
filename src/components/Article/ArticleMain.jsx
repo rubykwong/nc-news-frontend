@@ -3,8 +3,7 @@ import CommentList from "./CommentList"
 function ArticleMain () {
 return (
     <section>
-<Article />
-<CommentList />
+        <Article />
     </section>
     )
 }

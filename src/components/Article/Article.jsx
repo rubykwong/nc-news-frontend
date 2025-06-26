@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getArticleById } from "../../api";
 import ArticleFooter from "./ArticleFooter";
+import CommentContainer from "./CommentContainer";
 
 function Article () {
     const [article, setArticle] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     const [isError, setIsError] = useState(false)
+    const [showComments, setShowComments] = useState(false)
     const { articleId } = useParams()
 
     useEffect(() => {
@@ -63,7 +65,12 @@ function Article () {
         </section>
         <section className="single-article-footer">
                 <ArticleFooter articleId={article.article_id} initialVotes={article.votes} />
-                <p>Comments: {`${article.comment_count}`}</p>
+                {!showComments && (
+                    <button onClick={() => setShowComments(true)}>Show Comments</button>
+                )}
+                {showComments && (
+                    <CommentContainer articleId={article.article_id}/>
+                )}
         </section>
         </section>
     )
