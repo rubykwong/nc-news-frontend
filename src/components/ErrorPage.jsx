@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom"
 function ErrorPage () {
     return (
-        <div>
+        <section className="error-page">
             <h1>404 - Page Not Found</h1>
             <p>Hmm...looks like that page doesn't exist.</p>
-            </div>
+            <Link to="/" className="back-home-button">Back to Home </Link>
+            </section>
     )
 }
 

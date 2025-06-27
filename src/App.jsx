@@ -15,8 +15,9 @@ function App() {
     <Navbar />
     <Routes>
       <Route path="/" element={<Home />}/>
+      <Route path="/articles" element={<Home />}/>
       <Route path="/topics/:topic" element={<TopicPage/>}/>
-      <Route path="/:articleId" element={<ArticleMain/>} />
+      <Route path="/articles/:articleId" element={<ArticleMain/>} />
       <Route path="/error" element={<ErrorPage />} />
       <Route path="*" element={<ErrorPage />} />
     </Routes>
