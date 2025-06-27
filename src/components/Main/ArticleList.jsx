@@ -60,14 +60,14 @@ function ArticleList ({topic}) {
     if (articles.length > 0) {
         return (
         <section className="articles-container">
-                <label htmlFor="sort">Sort by:</label>
-                <select id="sort" value={sortBy} onChange={handleSortChange}>
+                <label htmlFor="sort">Sort by: </label>
+                <select id="sort" className="query" value={sortBy} onChange={handleSortChange}>
                     <option value="created_at">Date</option>
                     <option value="comment_count">Comments</option>
                     <option value="votes">Votes</option>
                 </select>
-                <label htmlFor="order">Order:</label>
-                <select id="order" value={order} onChange={handleOrderChange}>
+                <label htmlFor="order">Order: </label>
+                <select id="order" className="query" value={order} onChange={handleOrderChange}>
                     <option value="asc">asc</option>
                     <option value="desc">desc</option>
                 </select>
