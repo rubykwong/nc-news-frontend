@@ -1,30 +1,35 @@
 import { useEffect, useState } from "react";
 import { getArticles } from "../../api";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import ArticleCard from "./ArticleCard";
 
 function ArticleList ({topic}) {
     const [isLoading, setIsLoading] = useState(false);
-    const [isError, setIsError] = useState(false);
     const [articles, setArticles] = useState([]);
     const [searchParams, setSearchParams] = useSearchParams();
+    const navigate = useNavigate();
 
     const sortBy = searchParams.get("sort_by") || "created_at";
     const order = searchParams.get("order") || "desc";
-    
-    useEffect(() => {
-        setIsLoading(true);
-        setIsError(false);
-        getArticles(topic, sortBy, order)
-            .then((fetchedArticles) => {
+
+
+    useEffect(()=> {
+        const fetchData = async () => {
+            setIsLoading(true);
+            try {
+                const fetchedArticles = await getArticles(topic, sortBy, order);
                 setArticles(fetchedArticles.articles)
-            }).catch((err) => {
-                console.log(err)
-                setIsError(true)
-            }).finally(() => {
-                setIsLoading(false)
-            })
-    }, [topic, sortBy, order])
+            }
+            catch(err) {
+                navigate("/error")
+            }
+            finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchData();
+    }, [topic, sortBy, order, navigate])
 
     function handleSortChange(event) {
        searchParams.set("sort_by", event.target.value);
@@ -44,13 +49,6 @@ function ArticleList ({topic}) {
         )
     }
 
-    if (isError) {
-        return (
-            <section>
-                <p>{`Whoops! Something went wrong :(`}</p>
-            </section>
-        )
-    }
     if (articles.length === 0) {
         return (
             <section>

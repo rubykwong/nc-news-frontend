@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
-import Header from "./components/Header"
+import Header from './components/Header'
 import Navbar from './components/Navbar'
-import Coding from './components/Main/Coding'
-import Cooking from './components/Main/Cooking'
-import Football from './components/Main/Football'
+import Footer from './components/Footer'
 import Home from './components/Main/Home'
+import TopicPage from './components/Main/TopicPage'
+import ErrorPage from './components/ErrorPage'
 import ArticleMain from './components/Article/ArticleMain'
 function App() {
   return (
@@ -15,11 +15,12 @@ function App() {
     <Navbar />
     <Routes>
       <Route path="/" element={<Home />}/>
-      <Route path="/coding" element={<Coding />}/>
-      <Route path="/cooking" element={<Cooking />}/>
-      <Route path="/football" element={<Football />}/>
+      <Route path="/topics/:topic" element={<TopicPage/>}/>
       <Route path="/:articleId" element={<ArticleMain/>} />
+      <Route path="/error" element={<ErrorPage />} />
+      <Route path="*" element={<ErrorPage />} />
     </Routes>
+    <Footer />
     </>
   )
 }
