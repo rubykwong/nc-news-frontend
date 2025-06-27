@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getArticleById } from "../../api";
 import ArticleFooter from "./ArticleFooter";
 import CommentContainer from "./CommentContainer";
@@ -7,26 +7,27 @@ import CommentContainer from "./CommentContainer";
 function Article () {
     const [article, setArticle] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
-    const [isError, setIsError] = useState(false)
     const [showComments, setShowComments] = useState(false)
     const { articleId } = useParams()
+    const navigate = useNavigate()
 
     useEffect(() => {
-        setIsLoading(true)
-        setIsError(false)
-        getArticleById(articleId)
-        .then((fetchedArticle) => {
-            setArticle(fetchedArticle.article)
-            console.log(fetchedArticle.article)
-        })
-        .catch((err)=> {
-            console.log(err)
-            setIsError(true)
-        })
-        .finally(() => {
-            setIsLoading(false)
-        });
-    }, []);
+        const fetchData = async () => {
+            setIsLoading(true);
+            try {
+                const fetchedArticle = await getArticleById(articleId);
+                setArticle(fetchedArticle.article)
+            }
+            catch(err) {
+                navigate("/error");
+            }
+            finally {
+                setIsLoading(false);
+            }
+        }
+        fetchData();
+
+    }, [articleId, navigate])
 
     if (isLoading) {
         return (
@@ -36,13 +37,6 @@ function Article () {
         )
     }
 
-    if (isError) {
-        return (
-            <section>
-                <p>Whoops! Something went wrong</p>
-            </section>
-        )
-    }
     if (!article) return null;
 
     return (
