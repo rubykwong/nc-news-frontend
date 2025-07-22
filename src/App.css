@@ -69,15 +69,8 @@
   padding: 1rem;
 }
 
-.comment {
-  display: block;
-  border: 1px solid #ccc;
-  padding: 1rem;
-  margin: 1rem 0;
-  background-color: #fafafa;
-}
 
-.vote-container {
+ .vote-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -112,10 +105,46 @@
   background-color: #eee;
 }
 
+.comment {
+  display: block;
+  border: 1px solid #ccc;
+  max-width: 800px;
+  padding: 1rem;
+  margin: 1rem 0;
+  background-color: #fafafa;
+}
+
+.comment-list {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
 .delete-error {
   color: red;
   text-align: center;
 }
+
+.single-article-body {
+  max-width: 800px;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.single-article-body img {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+}
+
+.single-article-footer {
+  max-width: 800px;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+
 
 @media (max-width: 600px) {
   .article-list {
