@@ -63,7 +63,11 @@ function Article () {
                     <button onClick={() => setShowComments(true)}>Show Comments</button>
                 )}
                 {showComments && (
-                    <CommentContainer articleId={article.article_id}/>
+                    <div>
+                        <button onClick={() => setShowComments(false)}>Hide Comments</button>
+                        <CommentContainer articleId={article.article_id}/>
+                        <button onClick={() => setShowComments(false)}>Hide Comments</button>
+                        </div>
                 )}
         </section>
         </section>
