@@ -38,6 +38,10 @@ h1:hover {
   text-decoration: underline;
 }
 
+select {
+margin: 0.5rem 1rem;
+}
+
 .article-card {
   display: block;
   padding: 1rem;
