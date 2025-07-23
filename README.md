@@ -10,7 +10,7 @@ On NC News, you can:
 
 The deployed version is available [here](https://nc-news-ruby.netlify.app/)
 
-You can also find the repo for the back-end of this project [here](https://github.com/rubykwong/nc-news)
+You can also find the repo for the back-end of this project here: [Northcoders News Backend](https://github.com/rubykwong/nc-news)
 
 ## Setup
 To run your own version of this project:
